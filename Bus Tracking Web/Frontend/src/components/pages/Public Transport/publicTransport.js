@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import './main.css'
-import Select from "react-select";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 
 
@@ -11,7 +9,6 @@ class AddStudent extends Component {
 
   constructor(props) {
     super(props);
-    //this.state = initialState;
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,7 +19,9 @@ class AddStudent extends Component {
     cardname: "",
     expdate: "",
     cvv: "",
-    amount: ""
+    amount: "",
+    timetable: [],
+    route: ""
 
   };
 
@@ -37,16 +36,9 @@ class AddStudent extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    // console.log(this.state.displaycheckItems);
+    let studentDetails = {
 
-    const studentDetails = {
-
-      cardtype: this.state.cardtype,
-      cardnumber: this.state.cardnumber,
-      cardname: this.state.cardname,
-      expdate: this.state.expdate,
-      cvv: this.state.cvv,
-      amount: this.state.amount
+      route: this.state.route
 
     };
 
@@ -54,27 +46,28 @@ class AddStudent extends Component {
 
     console.log("classApplications Details: ", studentDetails);
 
-    axios.post("http://localhost:8080/BusTracking/addCard", studentDetails).then((res) => {
-      console.log(res);
-    })
+    axios
+      .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)
+      .then(response => {
 
-    // axios
-    //   .post("http://localhost:8080/BusTracking/addCard", studentDetails)
-    //   .then((res) => {
-    //     console.log("res", res);
-    //     if (res.data.code === 200) {
-    //       console.log("res.data.code", res.data.code);
-    //       alert("Date Inserted !")
-    //       // toast.success(res.data.message);
-    //       window.location.reload();
-    //     } else {
-    //       // toast.success(res.data.message);
-    //       alert(res.data.message)
-    //       window.location.reload();
-    //     }
-    //   });
+        this.setState({ timetable: response.data.data });
+        console.log("timetable ", this.state.timetable);
+
+      })
 
 
+  }
+
+  componentDidMount() {
+
+
+    axios.get(`${APIURL}/TimeTable/GetAllTimeTable`)
+
+      .then(response => {
+
+        this.setState({ timetable: response.data.data });
+        console.log("timetable ", this.state.timetable);
+      })
   }
 
   render() {
@@ -82,7 +75,6 @@ class AddStudent extends Component {
 
     return (
       <>
-        {/* <Navbar /> */}
         <div>
           <div className="v332_26">
             <div className="v332_27" />
@@ -103,7 +95,7 @@ class AddStudent extends Component {
             <button className="v332_100">Update Timetables</button>
             <button className="v332_101">Allocate Busses/Drivers</button>
             <span className="v332_41">Selected route : </span>
-            <span className="v332_42">138 : Pettah - Maharagama, Kottawa, Homagama </span>
+            <span className="v332_42">{this.state.route} </span>
             <span className="v332_43">Passengers</span>
             <span className="v332_44">Timetable</span>
             <span className="v332_45">FAQ</span>
@@ -114,47 +106,39 @@ class AddStudent extends Component {
             <div className="name" />
             <div className="name" />
             <div className="name" />
-            <div className="v332_53" />
-            <span className="v332_54">Select a route</span>
-            <div className="v332_55" />
+            <input type="text" id="fname" placeholder="Enter route" className="v332_53"
+              style={{ marginTop: "0px" }}
+              name="route"
+              value={this.state.route}
+              onChange={this.onChange}
+              required
+
+            />
+
+            <div className="v332_55" onClick={this.onSubmit} />
             <div className="v332_56">
               <div className="v332_57" />
               <div className="v332_58" />
             </div>
             <div className="name" />
-            <div className="v332_60" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v332_63">Monday - 7.30 AM</span>
-            <span className="v332_64">Pettah</span>
-            <span className="v332_65">Maharagama</span>
-            <div className="v332_66" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v332_69">Monday - 7.30 AM</span>
-            <span className="v332_70">Pettah</span>
-            <span className="v332_71">Maharagama</span>
-            <div className="v332_72" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v332_75">Monday - 7.30 AM</span>
-            <span className="v332_76">Pettah</span>
-            <span className="v332_77">Maharagama</span>
-            <div className="v332_78" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v332_81">Monday - 7.30 AM</span>
-            <span className="v332_82">Pettah</span>
-            <span className="v332_83">Maharagama</span>
+
+
+            <div style={{ marginTop: "500px", width: "800px", marginLeft: "450px" }}>
+
+              {this.state.timetable.length > 0 && this.state.timetable.map((item, index) => (
+                <>
+
+                  <div style={{ border: "1px solid black" }} key={item.route_path} className="timeclass">
+                    <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "30px" }}>{item.dateAndtime}</h3>
+                    <p style={{ marginLeft: "380px", fontSize: "20px", marginTop: "-30px" }}>{item.start}</p>
+                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-40px" }}>{item.destination}</p>
+                  </div>
+                </>
+              ))}
+
+            </div>
           </div>
-
-
         </div>
-
-        {/* <div className="containerer footerSt" style={{ marginTop: "120px" }}>
-          <p>2021 CMC <i className="fa fa-copyright" aria-hidden="true" /></p>
-        </div> */}
-
       </>
     );
 

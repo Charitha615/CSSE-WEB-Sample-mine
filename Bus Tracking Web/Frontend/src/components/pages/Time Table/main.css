@@ -241,7 +241,7 @@ body {
 .v331_94 {
   width: 990px;
   height: 643px;
-  background: rgba(238,238,253,1);
+
   opacity: 1;
   position: absolute;
   top: 147px;
@@ -416,6 +416,16 @@ body {
   left: 378px;
   overflow: hidden;
 }
+
+
+.timeclass{
+margin-top:10px;
+background: rgba(172,172,242,1);
+overflow: hidden;
+}
+
+
+
 .name {
   color: #fff;
 }

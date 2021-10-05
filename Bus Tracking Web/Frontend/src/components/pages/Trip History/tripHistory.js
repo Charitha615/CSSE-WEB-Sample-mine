@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import './main.css'
-import Select from "react-select";
 import axios from "axios";
-import { toast } from "react-toastify";
-import { APIURL } from "../../API/environment";
+
 
 
 const initialState = {
-  cardtype: "Credit",
-  cardnumber: "",
-  cardname: "",
-  expdate: "",
-  cvv: "",
-  amount: ""
+  search_date: "",
+  HistoryTrip: [],
+
+  trip_id: "",
+  date: "",
+  route: "",
+  total_fee: "",
+  top_ups_at_the_stations: "",
+  number_of_stops: "",
+  credit_deduction_status: ""
 
 };
 
@@ -38,24 +40,13 @@ class tripHistory extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    // console.log(this.state.displaycheckItems);
+    const dateId = this.state.search_date.replace("/", "");
+    const dateIdd = dateId.replace("/", "");
+
 
     let studentDetails = {
 
-      // cardtype: this.state.cardtype,
-      // cardnumber:this.state.cardnumber,
-      // cardname:this.state.cardname,
-      // expdate:this.state.expdate,
-      // cvv:this.state.cvv,
-      // amount: this.state.amount
-
-
-      "cardtype": "cardtype Charitha",
-      "cardnumber": "cardnumber Cha",
-      "cardname": "cardname",
-      "expdate": "expdate",
-      "cvv": "cvv",
-      "amount": "amount"
+      search_date: dateIdd
 
     };
 
@@ -64,18 +55,26 @@ class tripHistory extends Component {
     console.log("classApplications Details: ", studentDetails);
 
     axios
-      .post(`http://localhost:8080/BusTracking/addCard`, studentDetails)
+      .get(`http://localhost:8001/TripHistory/getAllTripHistory/${dateIdd}`)
       .then((res) => {
         console.log("res", res);
         if (res.data.code === 200) {
-          console.log("res.data.code", res.data.code);
-          alert("Date Inserted !")
-          // toast.success(res.data.message);
-          window.location.reload();
+          this.setState({ HistoryTrip: res.data.data });
+          console.log("HistoryTrip ", this.state.HistoryTrip[0]);
+
+
+
+          this.setState({ date: this.state.HistoryTrip[0].dates });
+          this.setState({ route: this.state.HistoryTrip[0].route });
+          this.setState({ total_fee: this.state.HistoryTrip[0].total_fee });
+          this.setState({ top_ups_at_the_stations: this.state.HistoryTrip[0].top_ups_at_the_stations });
+          this.setState({ number_of_stops: this.state.HistoryTrip[0].number_of_stops });
+          this.setState({ credit_deduction_status: this.state.HistoryTrip[0].credit_deduction_status });
+          this.setState({ trip_id: this.state.HistoryTrip[0].trip_id });
+
         } else {
-          // toast.success(res.data.message);
           alert(res.data.message)
-          window.location.reload();
+
         }
       });
 
@@ -87,7 +86,6 @@ class tripHistory extends Component {
 
     return (
       <>
-        {/* <Navbar /> */}
         <div>
           <div className="v328_22">
             <div className="v328_23" />
@@ -110,9 +108,9 @@ class tripHistory extends Component {
             <div className="v328_40" />
             <div className="name" /><div className="name" />
             <div className="name" /><span className="v328_44">My Trips</span>
-            <span className="v328_45">TR002345</span>
-            <span className="v328_46">09/09/2021</span>
-            <span className="v328_47">  from Kandy to Kurunegala</span>
+            <span className="v328_45">{this.state.trip_id}</span>
+            <span className="v328_46">{this.state.date}</span>
+            <span className="v328_47">  {this.state.route}</span>
             <span className="v328_48">Home&gt;Trip History</span>
             <span className="v328_49">Total Fee   : </span>
             <span className="v328_50">Top Ups at the stations   : </span>
@@ -121,26 +119,26 @@ class tripHistory extends Component {
             <span className="v328_53">Trip ID : </span>
             <span className="v328_54">Date : </span>
             <span className="v328_55">Routes : </span>
-            <span className="v328_56">Rs. 500.00</span>
-            <span className="v328_57">0</span>
-            <span className="v328_58">5</span>
-            <span className="v328_59">Successsful</span>
+            <span className="v328_56">{this.state.total_fee}</span>
+            <span className="v328_57">{this.state.top_ups_at_the_stations}</span>
+            <span className="v328_58">{this.state.number_of_stops}</span>
+            <span className="v328_59">{this.state.credit_deduction_status}</span>
             <span className="v328_60">Copyright@ travelbuddy.com</span>
-            <div className="name" /><div className="v328_62" />
-            <span className="v328_63">Select a date</span>
-            <div className="v328_64" />
-            <div className="v328_65" />
+            <input type="text" id="fname" placeholder="Enter Date" className="v328_62"
+              style={{ marginTop: "40px" }}
+              name="search_date"
+              value={this.state.search_date}
+              onChange={this.onChange}
+              required
+              style={{ width: "325px", height: "46px", marginTop: "-20px", marginLeft: "-5px" }}
+            />
+            <div className="v328_64"></div>
+            <div className="v328_65" onClick={this.onSubmit} />
             <button className="v332_105">Print</button>
             <button className="v332_106">Back</button>
 
-            </div>
-
-
+          </div>
         </div>
-
-        {/* <div className="containerer footerSt" style={{ marginTop: "120px" }}>
-          <p>2021 CMC <i className="fa fa-copyright" aria-hidden="true" /></p>
-        </div> */}
 
       </>
     );

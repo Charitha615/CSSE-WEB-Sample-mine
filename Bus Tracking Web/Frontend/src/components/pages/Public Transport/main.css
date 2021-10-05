@@ -17,7 +17,7 @@
 }
 
 .v332_999{
-  width: 180px;
+  width: 200px;
   color: black;
   background-color: #FE9814;
   position: absolute;
@@ -47,7 +47,7 @@
 }
 
 .v332_1000{
-  width: 200px;
+  width: 210px;
   color: #3200FC;
   background-color: #FE9814;
   position: absolute;
@@ -91,7 +91,7 @@ body {
 .v332_27 {
   width: 990px;
   height: 643px;
-  background: rgba(238,238,253,1);
+
   opacity: 1;
   position: absolute;
   top: 254px;

@@ -17,7 +17,7 @@ body {
 .v336_89 {
   width: 990px;
   height: 643px;
-  background: rgba(238,238,253,1);
+
   opacity: 1;
   position: absolute;
   top: 254px;
@@ -770,6 +770,17 @@ body {
   position: absolute;
   top: 735px;
   left: 1205px;
+  overflow: hidden;
+}
+
+.delete {
+  margin-left: 750px;
+  margin-top: -50px;
+  width: 36px;
+  height: 33px;
+  background: url("../../Images/delete_outline.png");
+  opacity: 1;
+  position: absolute;
   overflow: hidden;
 }
 /* .v336_174 {

@@ -274,7 +274,7 @@ body {
   width: 313px;
   color: rgba(0,0,0,1);
   position: absolute;
-  top: 234px;
+  top: 228px;
   left: 770px;
   font-family: Roboto;
   font-weight: Light;
@@ -286,7 +286,7 @@ body {
   width: 313px;
   color: rgba(0,0,0,1);
   position: absolute;
-  top: 284px;
+  top: 276px;
   left: 770px;
   font-family: Roboto;
   font-weight: Light;
@@ -418,7 +418,7 @@ body {
   width: 98px;
   color: rgba(0,0,0,1);
   position: absolute;
-  top: 457px;
+  top: 465px;
   left: 771px;
   font-family: Roboto;
   font-weight: Regular;
@@ -430,7 +430,7 @@ body {
   width: 98px;
   color: rgba(0,0,0,1);
   position: absolute;
-  top: 529px;
+  top: 533px;
   left: 770px;
   font-family: Roboto;
   font-weight: Regular;
@@ -442,7 +442,7 @@ body {
   width: 117px;
   color: rgba(43,185,74,1);
   position: absolute;
-  top: 587px;
+  top: 599px;
   left: 771px;
   font-family: Roboto;
   font-weight: Bold;
@@ -471,8 +471,8 @@ body {
   background: rgba(255,255,255,1);
   opacity: 1;
   position: absolute;
-  top: 150px;
-  left: 550px;
+  top: 168px;
+  left: 530px;
   border-top-left-radius: 120px;
   border-top-right-radius: 120px;
   border-bottom-left-radius: 120px;

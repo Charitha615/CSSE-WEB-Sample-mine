@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import './main.css'
-import Select from "react-select";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { APIURL } from "../../API/environment";
 
 
@@ -12,7 +10,9 @@ const initialState = {
   cardname: "",
   expdate: "",
   cvv: "",
-  amount: ""
+  amount: "",
+  timetable: [],
+  route: ""
 
 };
 
@@ -38,24 +38,9 @@ class timeTable extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    // console.log(this.state.displaycheckItems);
-
     let studentDetails = {
 
-      // cardtype: this.state.cardtype,
-      // cardnumber:this.state.cardnumber,
-      // cardname:this.state.cardname,
-      // expdate:this.state.expdate,
-      // cvv:this.state.cvv,
-      // amount: this.state.amount
-
-
-      "cardtype": "cardtype Charitha",
-      "cardnumber": "cardnumber Cha",
-      "cardname": "cardname",
-      "expdate": "expdate",
-      "cvv": "cvv",
-      "amount": "amount"
+      route: this.state.route
 
     };
 
@@ -64,22 +49,25 @@ class timeTable extends Component {
     console.log("classApplications Details: ", studentDetails);
 
     axios
-      .post(`http://localhost:8080/BusTracking/addCard`, studentDetails)
-      .then((res) => {
-        console.log("res", res);
-        if (res.data.code === 200) {
-          console.log("res.data.code", res.data.code);
-          alert("Date Inserted !")
-          // toast.success(res.data.message);
-          window.location.reload();
-        } else {
-          // toast.success(res.data.message);
-          alert(res.data.message)
-          window.location.reload();
-        }
-      });
+      .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)
+      .then(response => {
+
+        this.setState({ timetable: response.data.data });
+        console.log("timetable ", this.state.timetable);
+      })
+
+  }
+
+  componentDidMount() {
 
 
+    axios.get(`${APIURL}/TimeTable/GetAllTimeTable`)
+
+      .then(response => {
+
+        this.setState({ timetable: response.data.data });
+        console.log("timetable ", this.state.timetable);
+      })
   }
 
   render() {
@@ -87,7 +75,6 @@ class timeTable extends Component {
 
     return (
       <>
-        {/* <Navbar /> */}
         <div>
           <div className="v331_73">
             <div className="v331_74" />
@@ -102,7 +89,7 @@ class timeTable extends Component {
             <span className="v331_82">Home</span>
             <a href="/"><span className="v328_32">Payments</span></a>
             <a href="/TimeTable"><span className="v328_33">Timetable</span></a>
-           
+
             <span className="v331_85">Contact Us</span>
             <span className="v331_86">About Us</span>
             <span className="v331_87">LogOut     |    Profile</span>
@@ -115,43 +102,38 @@ class timeTable extends Component {
             <div className="v331_94" />
             <span className="v331_95">View Timetable</span>
             <span className="v331_96">Selected route : </span>
-            <span className="v331_97">138 : Pettah - Maharagama, Kottawa, Homagama </span>
-            <div className="name" /><div className="v331_99" />
-            <span className="v331_100">Select a route</span>
-            <div className="v331_101" /><div className="v331_102">
+            <span className="v331_97">{this.state.route} </span>
+            <div className="name" />
+            <input type="text" id="fname" placeholder="Enter route" className="v331_99"
+              style={{ marginTop: "0px" }}
+              name="route"
+              value={this.state.route}
+              onChange={this.onChange}
+              required
+
+            />
+            <div className="v331_101" onClick={this.onSubmit} /><div className="v331_102">
 
               <div className="v331_103" />
               <div className="v331_104" /></div>
             <div className="name" />
-            <div className="v331_106" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v331_109">Monday - 7.30 AM</span>
-            <span className="v331_110">Pettah</span>
-            <span className="v331_111">Maharagama</span>
-            <div className="v331_112" />
-            <div className="name" />
-            <div className="name" />
-            <span className="v331_115">Monday - 7.30 AM</span>
-            <span className="v331_116">Pettah</span>
-            <span className="v331_117">Maharagama</span>
-            <div className="v331_118" /><div className="name" />
-            <div className="name" />
-            <span className="v331_121">Monday - 7.30 AM</span>
-            <span className="v331_122">Pettah</span>
-            <span className="v331_123">Maharagama</span>
-            <div className="v331_124" /><div className="name" />
-            <div className="name" />
-            <span className="v331_127">Monday - 7.30 AM</span>
-            <span className="v331_128">Pettah</span><span className="v331_129">Maharagama</span>
+
+            <div style={{ marginTop: "350px", width: "800px", marginLeft: "350px" }}>
+
+              {this.state.timetable.length > 0 && this.state.timetable.map((item, index) => (
+                <>
+
+                  <div style={{ border: "1px solid black" }} key={item.route_path} className="timeclass">
+                    <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "30px" }}>{item.dateAndtime}</h3>
+                    <p style={{ marginLeft: "380px", fontSize: "20px", marginTop: "-30px" }}>{item.start}</p>
+                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-40px" }}>{item.destination}</p>
+                  </div>
+                </>
+              ))}
+
+            </div>
           </div>
-
-
         </div>
-
-        {/* <div className="containerer footerSt" style={{ marginTop: "120px" }}>
-          <p>2021 CMC <i className="fa fa-copyright" aria-hidden="true" /></p>
-        </div> */}
 
       </>
     );
