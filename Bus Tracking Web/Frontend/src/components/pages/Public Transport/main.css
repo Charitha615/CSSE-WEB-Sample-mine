@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 .v332_99{
-  width: 180px;
+  width: 190px;
   color: #3200FC;
   background-color: #FE9814;
   position: absolute;
@@ -32,7 +32,7 @@
 }
 
 .v332_100{
-  width: 200px;
+  width: 210px;
   color: black;
   background-color: #FE9814;
   position: absolute;
@@ -240,7 +240,7 @@ body {
   text-align: left;
 }
 .v332_41 {
-  width: 234px;
+  width: 504px;
   color: rgba(0,0,0,1);
   position: absolute;
   top: 400px;
@@ -252,11 +252,11 @@ body {
   text-align: left;
 }
 .v332_42 {
-  width: 659px;
+  width: 759px;
   color: rgba(70,26,244,1);
   position: absolute;
   top: 400px;
-  left: 712px;
+  left: 882px;
   font-family: Roboto;
   font-weight: Bold Italic;
   font-size: 24px;

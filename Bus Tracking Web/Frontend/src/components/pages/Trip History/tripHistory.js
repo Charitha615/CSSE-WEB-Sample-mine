@@ -58,19 +58,28 @@ class tripHistory extends Component {
       .get(`http://localhost:8001/TripHistory/getAllTripHistory/${dateIdd}`)
       .then((res) => {
         console.log("res", res);
+        console.log("len", res.data.data.length);
+
         if (res.data.code === 200) {
-          this.setState({ HistoryTrip: res.data.data });
-          console.log("HistoryTrip ", this.state.HistoryTrip[0]);
+
+          if (res.data.data.length == 0) {
+            alert("No History Available to Show !")
+          }
+          else {
+
+            this.setState({ HistoryTrip: res.data.data });
+            console.log("HistoryTrip ", this.state.HistoryTrip[0]);
 
 
 
-          this.setState({ date: this.state.HistoryTrip[0].dates });
-          this.setState({ route: this.state.HistoryTrip[0].route });
-          this.setState({ total_fee: this.state.HistoryTrip[0].total_fee });
-          this.setState({ top_ups_at_the_stations: this.state.HistoryTrip[0].top_ups_at_the_stations });
-          this.setState({ number_of_stops: this.state.HistoryTrip[0].number_of_stops });
-          this.setState({ credit_deduction_status: this.state.HistoryTrip[0].credit_deduction_status });
-          this.setState({ trip_id: this.state.HistoryTrip[0].trip_id });
+            this.setState({ date: this.state.HistoryTrip[0].dates });
+            this.setState({ route: this.state.HistoryTrip[0].route });
+            this.setState({ total_fee: this.state.HistoryTrip[0].total_fee });
+            this.setState({ top_ups_at_the_stations: this.state.HistoryTrip[0].top_ups_at_the_stations });
+            this.setState({ number_of_stops: this.state.HistoryTrip[0].number_of_stops });
+            this.setState({ credit_deduction_status: this.state.HistoryTrip[0].credit_deduction_status });
+            this.setState({ trip_id: this.state.HistoryTrip[0].trip_id });
+          }
 
         } else {
           alert(res.data.message)
@@ -92,7 +101,7 @@ class tripHistory extends Component {
             <div className="v328_24" />
             <span className="v328_25">Links</span>
             <span className="v328_26">Travel Buddy is here to help you to make your travel desires easier more than ever</span>
-            <span className="v328_27">&gt; FAQ</span>
+      
             <span className="v328_28">&gt; Help</span>
             <span className="v328_29">travelbuddy@gmail.com
               072 345 55 66</span>
@@ -124,7 +133,7 @@ class tripHistory extends Component {
             <span className="v328_58">{this.state.number_of_stops}</span>
             <span className="v328_59">{this.state.credit_deduction_status}</span>
             <span className="v328_60">Copyright@ travelbuddy.com</span>
-            <input type="text" id="fname" placeholder="Enter Date" className="v328_62"
+            <input type="text" id="fname" placeholder="Enter Date.. YYYY/MM/DD" className="v328_62"
               style={{ marginTop: "40px" }}
               name="search_date"
               value={this.state.search_date}

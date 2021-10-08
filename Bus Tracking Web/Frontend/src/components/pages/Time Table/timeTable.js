@@ -52,8 +52,16 @@ class timeTable extends Component {
       .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)
       .then(response => {
 
+        console.log("response",response.data.data.length)
+
+        if(response.data.data.length == 0){
+          alert("No Time slots available to show")
+        }else{
+
         this.setState({ timetable: response.data.data });
         console.log("timetable ", this.state.timetable);
+
+      }
       })
 
   }
@@ -81,7 +89,7 @@ class timeTable extends Component {
             <div className="v331_75" />
             <span className="v331_76">Links</span>
             <span className="v331_77">Travel Buddy is here to help you to make your travel desires easier more than ever</span>
-            <span className="v331_78">&gt; FAQ</span>
+           
             <span className="v331_79">&gt; Help</span>
             <span className="v331_80">travelbuddy@gmail.com
               072 345 55 66</span
@@ -101,10 +109,10 @@ class timeTable extends Component {
             <a href="/tripHistory"><span className="v328_34">Trip History</span></a>
             <div className="v331_94" />
             <span className="v331_95">View Timetable</span>
-            <span className="v331_96">Selected route : </span>
+            <span className="v331_96">The following time slots are for route no:</span>
             <span className="v331_97">{this.state.route} </span>
             <div className="name" />
-            <input type="text" id="fname" placeholder="Enter route" className="v331_99"
+            <input type="text" id="fname" placeholder="Enter route Number" className="v331_99"
               style={{ marginTop: "0px" }}
               name="route"
               value={this.state.route}
@@ -123,10 +131,10 @@ class timeTable extends Component {
               {this.state.timetable.length > 0 && this.state.timetable.map((item, index) => (
                 <>
 
-                  <div style={{ border: "1px solid black" }} key={item.route_path} className="timeclass">
-                    <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "30px" }}>{item.dateAndtime}</h3>
-                    <p style={{ marginLeft: "380px", fontSize: "20px", marginTop: "-30px" }}>{item.start}</p>
-                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-40px" }}>{item.destination}</p>
+                  <div style={{ border: "1px solid black",width:"800px",height:"80px" }} key={item.route_path} className="timeclass">
+                    <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "25px" }}>{item.dateAndtime}</h3>
+                    <p style={{ marginLeft: "380px", fontSize: "20px", marginTop: "-35px" }}>{item.start}</p>
+                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-33px" }}>{item.destination}</p>
                   </div>
                 </>
               ))}

@@ -101,17 +101,17 @@ class AddStudent extends Component {
                 <input type="text" name="dateAndtime"
                   value={this.state.dateAndtime}
                   onChange={this.onChange}
-                  placeholder="Enter Time and Date" />
+                  placeholder="Date & Time (Monday-TT/MM PM)" />
 
                 <input type="text" name="start"
                   value={this.state.start}
                   onChange={this.onChange}
-                  placeholder="Start" />
+                  placeholder="Source" />
 
                 <input type="text" name="destination"
                   value={this.state.destination}
                   onChange={this.onChange}
-                  placeholder="End" />
+                  placeholder="Destination" />
 
               </div>
 

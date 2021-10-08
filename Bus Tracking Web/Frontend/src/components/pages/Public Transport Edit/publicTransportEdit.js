@@ -75,8 +75,13 @@ class publicTransportEdit extends Component {
       .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)
       .then(response => {
 
-        this.setState({ timetable: response.data.data });
-        console.log("timetable ", this.state.timetable);
+        if (response.data.data.length == 0) {
+          alert("No Time slots available to show")
+        } else {
+
+          this.setState({ timetable: response.data.data });
+          console.log("timetable ", this.state.timetable);
+        }
       })
 
 
@@ -115,10 +120,10 @@ class publicTransportEdit extends Component {
             <span className="v336_100">Home</span>
             <span className="v336_101">Statistics</span>
             <span className="v336_102">Update Timetable</span>
-            <button className="v332_999">View Timetables</button>
-            <button className="v332_1000">Update Timetables</button>
+            <a href="/PublicTransport"> <button className="v332_999">View Timetables</button></a>
+            <a href="/PublicTransportEdit">  <button className="v332_1000">Update Timetables</button></a>
             <button className="v332_101">Allocate Busses/Drivers</button>
-            <span className="v336_103">Selected route : </span>
+            <span className="v336_103">The following time slots are for route no:</span>
             <span className="v336_104">
               {this.state.route}
             </span>
@@ -152,10 +157,10 @@ class publicTransportEdit extends Component {
               {this.state.timetable.length > 0 && this.state.timetable.map((item, index) => (
                 <>
 
-                  <div style={{ border: "1px solid black" }} key={item.route_path} className="timeclass">
+                  <div style={{ border: "1px solid black", width: "800px", height: "80px" }} key={item.route_path} className="timeclass">
                     <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "30px" }}>{item.dateAndtime}</h3>
-                    <p style={{ marginLeft: "350px", fontSize: "20px", marginTop: "-20px" }}>{item.start}</p>
-                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-40px" }}>{item.destination}</p>
+                    <p style={{ marginLeft: "350px", fontSize: "20px", marginTop: "-35px" }}>{item.start}</p>
+                    <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-33px" }}>{item.destination}</p>
 
                     <div className="delete" onClick={e => this.onDelete(e, item._id,)} />
 
