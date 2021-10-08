@@ -38,7 +38,7 @@ class timeTable extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    let studentDetails = {
+    let timeTableDetails = {
 
       route: this.state.route
 
@@ -46,7 +46,7 @@ class timeTable extends Component {
 
 
 
-    console.log("classApplications Details: ", studentDetails);
+    console.log("timeTable Details: ", timeTableDetails);
 
     axios
       .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)

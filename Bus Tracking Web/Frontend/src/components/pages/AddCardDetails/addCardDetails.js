@@ -50,7 +50,7 @@ class AddStudent extends Component {
     const amountcount = Number(this.state.current_balance)
     const current_balancecount = Number(this.state.amount)
 
-    const studentDetails = {
+    const addCard = {
 
       latest_payment: this.state.amount,
       latest_payment_date: this.state.currentDate,
@@ -60,10 +60,10 @@ class AddStudent extends Component {
 
 
 
-    console.log("classApplications Details: ", studentDetails);
+    console.log("AddCard Details: ", addCard);
 
     axios
-      .put(`${APIURL}/TopupPayment/update-Topup/${TopUpID}`, studentDetails)
+      .put(`${APIURL}/TopupPayment/update-Topup/${TopUpID}`, addCard)
       .then((res) => {
         console.log("res", res);
         if (res.data.code === 200) {

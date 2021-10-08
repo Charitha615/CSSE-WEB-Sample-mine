@@ -36,7 +36,7 @@ class AddStudent extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    let studentDetails = {
+    let PublicTransportDetails = {
 
       route: this.state.route
 
@@ -44,7 +44,7 @@ class AddStudent extends Component {
 
 
 
-    console.log("classApplications Details: ", studentDetails);
+    console.log("Public Transport Details: ", PublicTransportDetails );
 
     axios
       .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)

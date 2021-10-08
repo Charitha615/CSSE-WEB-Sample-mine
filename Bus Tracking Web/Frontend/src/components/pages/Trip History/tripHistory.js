@@ -44,15 +44,13 @@ class tripHistory extends Component {
     const dateIdd = dateId.replace("/", "");
 
 
-    let studentDetails = {
+    let TripHistoryDetails = {
 
       search_date: dateIdd
 
     };
 
-
-
-    console.log("classApplications Details: ", studentDetails);
+    console.log("Trip History Details: ", TripHistoryDetails);
 
     axios
       .get(`http://localhost:8001/TripHistory/getAllTripHistory/${dateIdd}`)

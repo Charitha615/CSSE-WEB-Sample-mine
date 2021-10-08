@@ -50,8 +50,6 @@ class AddStudent extends Component {
 
     };
 
-
-
     console.log("TimeTableDetails Details: ", TimeTableDetails);
 
     axios
@@ -67,14 +65,8 @@ class AddStudent extends Component {
           window.location.reload();
         }
       });
-
-
   }
-
-
   render() {
-
-
     return (
       <>
         <div>

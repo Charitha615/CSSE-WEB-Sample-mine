@@ -62,14 +62,12 @@ class publicTransportEdit extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    const studentDetails = {
+    const publicTransportDetails = {
 
       route: this.state.route
     };
 
-
-
-    console.log("classApplications Details: ", studentDetails);
+    console.log("publicTransport Details: ", publicTransportDetails);
 
     axios
       .get(`${APIURL}/TimeTable/getDetailsByRoute/${this.state.route}`)

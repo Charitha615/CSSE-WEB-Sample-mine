@@ -8,6 +8,4 @@ routes.use("/TopupPayment", Topup);
 routes.use("/TripHistory", TripHistory);
 routes.use("/TimeTable", TimeTable);
 
-
-
 module.exports = routes;
