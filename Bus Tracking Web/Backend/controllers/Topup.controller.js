@@ -1,39 +1,37 @@
-const TopList = require("../models/Topup.model");
+const TopUp = require("../models/Topup.model");
 const messages = require("../messages/messages");
 
-const TopListController = {
-  createTopList: async (req, res) => {
+const TopUpController = {
+  // backend for Card Top Up 
+  createTopUp: async (req, res) => {
 
     try {
       const {
-        account_id,
-        account_name,
-        card_id,
-        latest_payment,
-        latest_payment_date,
-        current_balance,
-
+        accountId,
+        accountName,
+        cardId,
+        latestPayment,
+        latestPaymentDate,
+        currentBalance,
       } = req.body;
 
-
-      const newTopList = new TopList({
-        account_id,
-        account_name,
-        card_id,
-        latest_payment,
-        latest_payment_date,
-        current_balance,
+      const newTopUp = new TopUp({
+        accountId,
+        accountName,
+        cardId,
+        latestPayment,
+        latestPaymentDate,
+        currentBalance,
       });
 
-      console.log("TopList Details : ", newTopList);
-      await newTopList.save();
+      await newTopUp.save();
 
       return res.status(200).json({
         code: messages.SuccessCode,
         success: messages.Success,
         status: messages.SuccessStatus,
-        data: newTopList,
-        message: "TopList is created successfully.",
+        data: newTopUp,
+        message: "TopUp is created successfully.",
       });
     } catch (err) {
       return res.status(500).json({
@@ -47,14 +45,14 @@ const TopListController = {
   getTopUpDetailsByJobID: async (req, res) => {
     try {
       if (req.params && req.params.id) {
-        const JobDetails = await TopList.findById({ _id: req.params.id });
+        const JobDetails = await TopUp.findById({ _id: req.params.id });
 
         return res.status(200).json({
           code: messages.SuccessCode,
           success: messages.Success,
           status: messages.SuccessStatus,
           data: JobDetails,
-          message: "The Topup detail recieved",
+          message: "The Topup details recieved",
         });
       }
     } catch (err) {
@@ -72,19 +70,19 @@ const TopListController = {
       if (req.params && req.params.id) {
         console.log("Stage 01");
         const {
-          latest_payment,
-          latest_payment_date,
-          current_balance,
+          latestPayment,
+          latestPaymentDate,
+          currentBalance,
 
         } = req.body;
 
-        await TopList.findByIdAndUpdate(req.params.id, {
-          latest_payment,
-          latest_payment_date,
-          current_balance,
+        await TopUp.findByIdAndUpdate(req.params.id, {
+          latestPayment,
+          latestPaymentDate,
+          currentBalance,
         });
 
-        const Jobs = await TopList.findById(req.params.id);
+        const Jobs = await TopUp.findById(req.params.id);
 
         return res.status(200).json({
           code: messages.SuccessCode,
@@ -105,4 +103,4 @@ const TopListController = {
   },
 }
 
-module.exports = TopListController;
+module.exports = TopUpController;

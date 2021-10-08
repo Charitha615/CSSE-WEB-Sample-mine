@@ -4,9 +4,9 @@ import axios from "axios";
 import { APIURL } from "../../API/environment";
 
 
-const TopUpID = "615b62836b077090fc9c11e9";
+const TopUpID = "616090b4fe1fba14f4b1f60e";
 
-class AddStudent extends Component {
+class AddCard extends Component {
 
   constructor(props) {
     super(props);
@@ -23,9 +23,9 @@ class AddStudent extends Component {
       expdate: "",
       cvv: "",
       amount: "",
-      latest_payment: "",
-      latest_payment_date: "",
-      current_balance: ""
+      latestPayment: "",
+      latestPaymentDate: "",
+      currentBalance: ""
     };
 
     this.onChange = this.onChange.bind(this);
@@ -47,14 +47,14 @@ class AddStudent extends Component {
 
 
 
-    const amountcount = Number(this.state.current_balance)
-    const current_balancecount = Number(this.state.amount)
+    const amountcount = Number(this.state.currentBalance)
+    const currentBalancecount = Number(this.state.amount)
 
     const addCard = {
 
-      latest_payment: this.state.amount,
-      latest_payment_date: this.state.currentDate,
-      current_balance: amountcount + current_balancecount
+      latestPayment: this.state.amount,
+      latestPaymentDate: this.state.currentDate,
+      currentBalance: amountcount + currentBalancecount
 
     };
 
@@ -90,9 +90,9 @@ class AddStudent extends Component {
         this.setState({ TopUp: response.data.data });
         console.log("response ", this.state.TopUp);
 
-        this.setState({ latest_payment: this.state.TopUp.latest_payment });
-        this.setState({ latest_payment_date: this.state.TopUp.latest_payment_date });
-        this.setState({ current_balance: this.state.TopUp.current_balance });
+        this.setState({ latestPayment: this.state.TopUp.latestPayment });
+        this.setState({ latestPaymentDate: this.state.TopUp.latestPaymentDate });
+        this.setState({ currentBalance: this.state.TopUp.currentBalance });
 
       })
   }
@@ -172,7 +172,7 @@ class AddStudent extends Component {
               <span className="v318_110">* Exp Date</span>
               <span className="v318_111" style={{ marginTop: "0px" }}>CVV</span>
               <div className="v318_112">
-                <span className="v318_113"><input type="number" id="fname" placeholder="MM/DD"
+                <span className="v318_113"><input type="text" id="fname" placeholder="MM/DD"
                   name="expdate"
                   value={this.state.expdate}
                   onChange={this.onChange}
@@ -199,11 +199,11 @@ class AddStudent extends Component {
               <span className="v318_125">Card ID</span>
               <span className="v318_126">CID_885954</span>
               <span className="v318_127">Latest Payment</span>
-              <span className="v318_128">{this.state.latest_payment}</span>
+              <span className="v318_128">Rs. {this.state.latestPayment}.00</span>
               <span className="v318_129">Latest Payment Date</span>
-              <span className="v318_130">{this.state.latest_payment_date}</span>
+              <span className="v318_130">{this.state.latestPaymentDate}</span>
               <span className="v318_131">Current Balance</span>
-              <span className="v318_132">{this.state.current_balance}</span>
+              <span className="v318_132">Rs. {this.state.currentBalance}.00</span>
               <span className="v318_133" onClick={this.onSubmit}><button>Top Up</button></span>
 
             </div>
@@ -219,4 +219,4 @@ class AddStudent extends Component {
 }
 
 
-export default AddStudent;
+export default AddCard;

@@ -16,7 +16,7 @@ class AddStudent extends Component {
 
     this.state = {
       route: "",
-      route_path: "",
+      routePath: "",
       dateAndtime: "",
       start: "",
       destination: ""
@@ -43,7 +43,7 @@ class AddStudent extends Component {
     const TimeTableDetails = {
 
       route: this.state.route,
-      route_path: this.state.route_path,
+      routePath: this.state.routePath,
       dateAndtime: this.state.dateAndtime,
       start: this.state.start,
       destination: this.state.destination,
@@ -85,8 +85,8 @@ class AddStudent extends Component {
                   onChange={this.onChange}
                   placeholder="Enter route" />
 
-                <input type="text" name="route_path"
-                  value={this.state.route_path}
+                <input type="text" name="routePath"
+                  value={this.state.routePath}
                   onChange={this.onChange}
                   placeholder="Enter route Path" />
 

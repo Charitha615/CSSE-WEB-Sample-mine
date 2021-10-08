@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const TopListSchema = new mongoose.Schema(
   {
-    account_id: {type: String,trim: true,requried: true},
-    account_name: {type: String,trim: true,requried: true},
-    card_id: {type: String,trim: true,requried: true},
-    latest_payment: {type: String,trim: true,requried: true},
-    latest_payment_date: {type: String,trim: true,requried: true},
-    current_balance: {type: String,trim: true,requried: true},
+    accountId: {type: String,trim: true,requried: true},
+    accountName: {type: String,trim: true,requried: true},
+    cardId: {type: String,trim: true,requried: true},
+    latestPayment: {type: String,trim: true,requried: true},
+    latestPaymentDate: {type: String,trim: true,requried: true},
+    currentBalance: {type: String,trim: true,requried: true},
   },
   {
     timestamps: true,

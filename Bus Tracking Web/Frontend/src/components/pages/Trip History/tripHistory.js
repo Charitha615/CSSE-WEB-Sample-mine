@@ -8,13 +8,13 @@ const initialState = {
   search_date: "",
   HistoryTrip: [],
 
-  trip_id: "",
+  tripId: "",
   date: "",
   route: "",
-  total_fee: "",
-  top_ups_at_the_stations: "",
-  number_of_stops: "",
-  credit_deduction_status: ""
+  totalFee: "",
+  topUpsAtTheStations: "",
+  numberOfStops: "",
+  creditDeductionStatus: ""
 
 };
 
@@ -72,11 +72,11 @@ class tripHistory extends Component {
 
             this.setState({ date: this.state.HistoryTrip[0].dates });
             this.setState({ route: this.state.HistoryTrip[0].route });
-            this.setState({ total_fee: this.state.HistoryTrip[0].total_fee });
-            this.setState({ top_ups_at_the_stations: this.state.HistoryTrip[0].top_ups_at_the_stations });
-            this.setState({ number_of_stops: this.state.HistoryTrip[0].number_of_stops });
-            this.setState({ credit_deduction_status: this.state.HistoryTrip[0].credit_deduction_status });
-            this.setState({ trip_id: this.state.HistoryTrip[0].trip_id });
+            this.setState({ totalFee: this.state.HistoryTrip[0].totalFee });
+            this.setState({ topUpsAtTheStations: this.state.HistoryTrip[0].topUpsAtTheStations });
+            this.setState({ numberOfStops: this.state.HistoryTrip[0].numberOfStops });
+            this.setState({ creditDeductionStatus: this.state.HistoryTrip[0].creditDeductionStatus });
+            this.setState({ tripId: this.state.HistoryTrip[0].tripId });
           }
 
         } else {
@@ -115,7 +115,7 @@ class tripHistory extends Component {
             <div className="v328_40" />
             <div className="name" /><div className="name" />
             <div className="name" /><span className="v328_44">My Trips</span>
-            <span className="v328_45">{this.state.trip_id}</span>
+            <span className="v328_45">{this.state.tripId}</span>
             <span className="v328_46">{this.state.date}</span>
             <span className="v328_47">  {this.state.route}</span>
             <span className="v328_48">Home&gt;Trip History</span>
@@ -126,10 +126,10 @@ class tripHistory extends Component {
             <span className="v328_53">Trip ID : </span>
             <span className="v328_54">Date : </span>
             <span className="v328_55">Routes : </span>
-            <span className="v328_56">{this.state.total_fee}</span>
-            <span className="v328_57">{this.state.top_ups_at_the_stations}</span>
-            <span className="v328_58">{this.state.number_of_stops}</span>
-            <span className="v328_59">{this.state.credit_deduction_status}</span>
+            <span className="v328_56">{this.state.totalFee}</span>
+            <span className="v328_57">{this.state.topUpsAtTheStations}</span>
+            <span className="v328_58">{this.state.numberOfStops}</span>
+            <span className="v328_59">{this.state.creditDeductionStatus}</span>
             <span className="v328_60">Copyright@ travelbuddy.com</span>
             <input type="text" id="fname" placeholder="Enter Date.. YYYY/MM/DD" className="v328_62"
               style={{ marginTop: "40px" }}

@@ -129,12 +129,12 @@ class AddStudent extends Component {
             <div className="name" />
 
 
-            <div style={{ marginTop: "500px", width: "800px", marginLeft: "450px" }}>
+            <div style={{ marginTop: "450px", width: "800px", marginLeft: "450px" }}>
 
               {this.state.timetable.length > 0 && this.state.timetable.map((item, index) => (
                 <>
 
-                  <div style={{ border: "1px solid black",width:"800px",height:"80px" }} key={item.route_path} className="timeclass">
+                  <div style={{ border: "1px solid black",width:"800px",height:"80px" }} key={item.routePath} className="timeclass">
                     <h3 style={{ marginLeft: "30px", fontSize: "25px", marginTop: "30px" }}>{item.dateAndtime}</h3>
                     <p style={{ marginLeft: "380px", fontSize: "20px", marginTop: "-35px" }}>{item.start}</p>
                     <p style={{ marginLeft: "600px", fontSize: "20px", marginTop: "-33px" }}>{item.destination}</p>

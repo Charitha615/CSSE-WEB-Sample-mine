@@ -6,27 +6,27 @@ const TopListController = {
 
     try {
       const {
-        trip_id,
+        tripId,
         date,
         dates,
         route,
-        total_fee,
-        top_ups_at_the_stations,
-        number_of_stops,
-        credit_deduction_status
+        totalFee,
+        topUpsAtTheStations,
+        numberOfStops,
+        creditDeductionStatus
 
       } = req.body;
 
 
       const newTripHistory = new TripHistory({
-        trip_id,
+        tripId,
         dates,
         date,
         route,
-        total_fee,
-        top_ups_at_the_stations,
-        number_of_stops,
-        credit_deduction_status
+        totalFee,
+        topUpsAtTheStations,
+        numberOfStops,
+        creditDeductionStatus
       });
 
       console.log("TripHistory Details : ", newTripHistory);
